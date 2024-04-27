@@ -1,0 +1,43 @@
+services:
+  # uncomment this section and comment out the mysql section to use postgres instead of mysql
+  postgres:
+    restart: unless-stopped
+    image: postgres:14
+    hostname: postgres
+    volumes: 
+     - semaphore-postgres:/var/lib/postgresql/data
+    environment:
+     POSTGRES_USER: semaphore
+     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+     POSTGRES_DB: semaphore
+  semaphore:
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    image: semaphoreui/semaphore:latest
+    environment:
+      SEMAPHORE_DB_USER: semaphore
+      POSTGRES_DB: semaphore
+      SEMAPHORE_DB_PASS: $POSTGRES_PASSWORD 
+      SEMAPHORE_DB_HOST: postggres
+      SEMAPHORE_DB_PORT: 5432 
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
+      SEMAPHORE_ADMIN_PASSWORD: $SEMAPHORE_ADMIN_PASSWORD
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: $SEMAPHORE_ADMIN_EMAIL
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: $SEMAPHORE_ACCESS_KEY_ENCRYPTION
+      SEMAPHORE_LDAP_ACTIVATED: 'no' # if you wish to use ldap, set to: 'yes' 
+      # SEMAPHORE_LDAP_HOST: dc01.local.example.com
+      # SEMAPHORE_LDAP_PORT: '636'
+      # SEMAPHORE_LDAP_NEEDTLS: 'yes'
+      # SEMAPHORE_LDAP_DN_BIND: 'uid=bind_user,cn=users,cn=accounts,dc=local,dc=shiftsystems,dc=net'
+      # SEMAPHORE_LDAP_PASSWORD: 'ldap_bind_account_password'
+      # SEMAPHORE_LDAP_DN_SEARCH: 'dc=local,dc=example,dc=com'
+      # SEMAPHORE_LDAP_SEARCH_FILTER: "(\u0026(uid=%s)(memberOf=cn=ipausers,cn=groups,cn=accounts,dc=local,dc=example,dc=com))"
+    depends_on:
+      - postgres
+volumes:
+  semaphore-postgres:
