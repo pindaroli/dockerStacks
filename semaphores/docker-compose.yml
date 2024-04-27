@@ -19,7 +19,7 @@ services:
       SEMAPHORE_DB_USER: semaphore
       POSTGRES_DB: semaphore
       SEMAPHORE_DB_PASS: $POSTGRES_PASSWORD 
-      SEMAPHORE_DB_HOST: postggres
+      SEMAPHORE_DB_HOST: postgres
       SEMAPHORE_DB_PORT: 5432 
       SEMAPHORE_DB_DIALECT: postgres
       SEMAPHORE_DB: semaphore
