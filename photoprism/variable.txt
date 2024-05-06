@@ -1,5 +1,0 @@
-      PHOTOPRISM_ADMIN_USER: $ADMINUSER                 # admin login username
-      PHOTOPRISM_ADMIN_PASSWORD: $ADMINPASS         # initial admin password (8-72 characters)
-      - "$PHOTOSHARE:/photoprism/originals"               # Original media files (DO NOT REMOVE)
-      MARIADB_PASSWORD: "$MARIADB_PASSWORD"
-      MARIADB_ROOT_PASSWORD: "$MARIADB_ROOT_PASSWORD"
