@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  k8s_container:
+    image: alpine/k8s:1.27.13
+    container_name: k8s_container
+    restart: unless-stopped
+    ports:
+      - "8080:80"  # Mappa la porta 8080 del tuo host alla porta 80 del container
+    environment:
+      - ENV_VAR_NAME=value  # Sostituisci con le tue variabili d'ambiente, se necessario
+    volumes:
+      - ./data:/data  # Mappa una directory locale del tuo host a una directory nel container, se necessario
+    command: ["sh", "-c", "echo Hello Kubernetes! && tail -f /dev/null"]  # Comando da eseguire all'avvio del container
