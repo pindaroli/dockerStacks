@@ -8,11 +8,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
+      - DOCKER_MODS=linuxserver/mods:jellyfin-amd
     volumes:
       - ./jellyfin-conf:/config
       - $ARRDATA:/data
-    devices: 
-      - /dev/dri/:/dev/dri/
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
     ports:
       - 8096:8096
       - 8920:8920 #optional
