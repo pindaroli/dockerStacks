@@ -1,0 +1,5 @@
+192.168.50.81 docker.pind
+192.168.50.80 i7.pind
+192.168.50.81 pihole.pind
+192.168.50.80 proxmox.pind
+192.168.50.21 kblab.pind
